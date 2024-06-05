@@ -14,6 +14,21 @@ image database with different radiation doses and breast lesions."</p>
   and simulating the level of radiation dose at which the image was acquired.</p>
 
 # Dataset information
+| Name | LAVIDB |
+| ------ | ------ |
+| Origin | Clinical |
+| Field | Radiology |
+| Organ | Breast |
+| Age range | 30-78 |
+| Cite as | Gregory P. Zanelato, Lucas E. Soares, Renann F. Brandão, Rodrigo B. Vimieiro, Renato F. Caron, Bruno B. Oliveira, Silvia M. P. S. Sabino, Lucas R. Borges, Marcelo A. C. Vieira, "Customizable digital mammography database: on-demand generation with user-defined radiation dose and microcalcification cluster characteristics," Proc. SPIE 13174, 17th International Workshop on Breast Imaging (IWBI 2024), 131741C (29 May 2024); https://doi.org/10.1117/12.3023423 |
+| Year | 2024 |
+| DOI | https://doi.org/10.1117/12.3023423 |
+| Base images | 100 |
+| Modality | MG |
+| Resolution | 1914 x 2294 |
+| Scanner | GE HEALTHCARE (Senographe Pristina) |
+| Copyright | Copyright 2024 University of São Paulo (Brazil), Gregory P. Zanelato |
+
 
 # Registration
 This application is Free for use in legal and ethical medical diagnostics research.
