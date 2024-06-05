@@ -33,5 +33,5 @@ image database with different radiation doses and breast lesions."</p>
 # Registration
 This application is Free for use in legal and ethical medical diagnostics research.
 
-To access the application, the [Data Sharing License Agreement](https://github.com/LAVI-USP//blob/main/license.pdf) 
+To access the application, the [Data Sharing License Agreement](https://github.com/LAVI-USP//blob/main/data-sharing-agreement.docx) 
   must be filled out and attached to the form available at [LAVIDB](https://app.lavidb.com.br/account/register).
