@@ -24,9 +24,9 @@ image database with different radiation doses and breast lesions."</p>
 | Year | 2024 |
 | DOI | https://doi.org/10.1117/12.3023423 |
 | Base images | 100 |
+| Scanner | GE HEALTHCARE (Senographe Pristina) |
 | Modality | MG |
 | Resolution | 1914 x 2294 px |
-| Scanner | GE HEALTHCARE (Senographe Pristina) |
 | Copyright | Copyright 2024 University of São Paulo (Brazil), Gregory P. Zanelato |
 
 
