@@ -1,0 +1,17 @@
+boto3==1.20.16
+pyathena==2.5.1
+schedule==1.1.0
+pika
+pytz
+matplotlib==3.7.2
+numpy==1.25.2
+opencv_python==4.8.0.76
+pydicom==2.4.4
+scipy==1.12.0
+scikit-image
+Requests==2.31.0
+python-dotenv==1.0.1
+pandas==2.1.4
+openpyxl==3.1.2
+
+

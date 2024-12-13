@@ -1,0 +1,19 @@
+version: "3.3"  # optional since v1.27.0
+services:
+  lavidb_consumer:
+    image: gregoryzanelato/lavidb.consumer:latest
+    environment:
+      - RABBIT_QUEUE_NAME=database.request.queue
+      - RABBIT_HOST=app.lavidb.com.br
+      - RABBIT_PORT=5672
+      - RABBIT_USER=lavi_app
+      - RABBIT_PASS=l4v1@2023
+      - RABBIT_VHOST=lavidb
+      - LOG_LEVEL=Info
+    volumes:
+      - /files/result/:/code/result
+      - /files/gold/:/code/gold
+      - /files/lesions/:/code/lesions
+      - /files/density_estimation/:/code/density_estimation
+      - /files/noise_estimation/:/code/noise_estimation
+      - /files/thumbs/:/code/thumbs
