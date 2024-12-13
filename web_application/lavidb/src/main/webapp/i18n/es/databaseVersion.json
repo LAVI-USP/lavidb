@@ -1,0 +1,25 @@
+{
+  "lavidbApp": {
+    "databaseVersion": {
+      "home": {
+        "title": "Database Versions",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Database Version",
+        "createOrEditLabel": "Crear o editar Database Version",
+        "notFound": "Ningún Database Versions encontrado"
+      },
+      "created": "¡Se creó con éxito una nueva versión del banco de imágenes!",
+      "updated": "Un Database Version ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Database Version ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Database Version {{ id }}?"
+      },
+      "detail": {
+        "title": "Database Version"
+      },
+      "id": "ID",
+      "versionNumber": "Version Number",
+      "createdDate": "Created Date"
+    }
+  }
+}

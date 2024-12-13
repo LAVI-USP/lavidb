@@ -1,0 +1,62 @@
+<div>
+  <h2 id="page-heading" data-cy="DatabaseRequestHeading">
+    <span jhiTranslate="global.menu.entities.databaseRequest">Database Request</span>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="databaseRequests?.length === 0">
+    <span jhiTranslate="lavidbApp.databaseRequest.home.notFound">Nenhum Database Request encontrado</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="databaseRequests && databaseRequests.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort>
+          <th scope="col">
+            <div class="d-flex">
+              <span jhiTranslate="lavidbApp.databaseRequest.parameters">Parameters</span>
+            </div>
+          </th>
+          <th scope="col">
+            <div class="d-flex">
+              <span jhiTranslate="lavidbApp.databaseRequest.createdDate">Created Date</span>
+            </div>
+          </th>
+          <th scope="col">
+            <div class="d-flex">
+              <span jhiTranslate="lavidbApp.databaseRequest.expiresAt">Expires At</span>
+            </div>
+          </th>
+          <th scope="col">
+            <div class="d-flex">
+              <span jhiTranslate="lavidbApp.databaseRequest.downloadLink">Download Link</span>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="databaseVersion.id">
+            <div class="d-flex">
+              <span jhiTranslate="lavidbApp.databaseRequest.databaseVersion">Database Version</span>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let databaseRequest of databaseRequests | orderBy: '-createdDate'" data-cy="entityTable">
+          <td>{{ databaseRequest.parameters }}</td>
+          <td>{{ databaseRequest.createdDate | formatMediumDate }}</td>
+          <td>{{ databaseRequest.expiresAt | formatMediumDate }}</td>
+          <td style="text-align: center">
+            <a *ngIf="databaseRequest.downloadLink" href="{{ databaseRequest.downloadLink }}">
+              <fa-icon style="font-size: 26px" icon="file-download"></fa-icon>
+            </a>
+          </td>
+          <td style="text-align: center">
+            <div *ngIf="databaseRequest.databaseVersion">v{{ databaseRequest.databaseVersion.versionNumber }}</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

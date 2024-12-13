@@ -1,0 +1,41 @@
+{
+    "accessionNumber": "string",
+    "acquisitionDate": "2023-08-28T23:15:44.147Z",
+    "imageLaterality": "string",
+    "viewPosition": "string",
+    "imagePath": "string",
+    "imageRaw": "string",
+    "thumbPath": "string",
+    "manufacturer": {
+      "name": "string",
+      "model": "string",
+      "modality": "string",
+      "hash": "string"
+    },
+    "irradiationEvent": {
+      "exposure": 0,
+      "exposureuAs": 0,
+      "relativeXrayExposure": 0,
+      "kvp": "string",
+      "radiationDose": 0,
+      "distanceSourceEntrance": 0,
+      "organDose": 0,
+      "dosemGy": 0
+    },
+    "patient": {
+      "name": "string",
+      "sex": "string",
+      "birthDate": "string",
+      "age": 0,
+      "hash": "string"
+    },
+    "diagnostic": {
+      "birads": "string",
+      "description": "string"
+    },
+    "institution": {
+      "name": "string",
+      "department": "string",
+      "hash": "string"
+    }
+  }

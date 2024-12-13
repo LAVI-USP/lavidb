@@ -1,0 +1,36 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="diagnostic">
+      <h2 data-cy="diagnosticDetailsHeading"><span jhiTranslate="lavidbApp.diagnostic.detail.title">Diagnostic</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">Código</span></dt>
+        <dd>
+          <span>{{ diagnostic.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.diagnostic.birads">Birads</span></dt>
+        <dd>
+          <span>{{ diagnostic.birads }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.diagnostic.description">Description</span></dt>
+        <dd>
+          <span>{{ diagnostic.description }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+      </button>
+
+      <button type="button" [routerLink]="['/diagnostic', diagnostic.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

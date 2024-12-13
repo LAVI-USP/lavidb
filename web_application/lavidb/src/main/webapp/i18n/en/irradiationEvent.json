@@ -1,0 +1,27 @@
+{
+  "lavidbApp": {
+    "irradiationEvent": {
+      "home": {
+        "title": "Irradiation Events",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Irradiation Event",
+        "createOrEditLabel": "Create or edit a Irradiation Event",
+        "notFound": "No Irradiation Events found"
+      },
+      "created": "A new Irradiation Event is created with identifier {{ param }}",
+      "updated": "A Irradiation Event is updated with identifier {{ param }}",
+      "deleted": "A Irradiation Event is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Irradiation Event {{ id }}?"
+      },
+      "detail": {
+        "title": "Irradiation Event"
+      },
+      "id": "ID",
+      "relativeXrayExposure": "Relative Xray Exposure",
+      "kvp": "Kvp",
+      "dosemAs": "Dosem As",
+      "dosemGy": "Dosem Gy"
+    }
+  }
+}

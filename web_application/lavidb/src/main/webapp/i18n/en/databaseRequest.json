@@ -1,0 +1,29 @@
+{
+  "lavidbApp": {
+    "databaseRequest": {
+      "home": {
+        "title": "Database Requests",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Database Request",
+        "createOrEditLabel": "Create or edit a Database Request",
+        "notFound": "No Database Requests found"
+      },
+      "created": "A new Database Request is created with identifier {{ param }}",
+      "updated": "A Database Request is updated with identifier {{ param }}",
+      "deleted": "A Database Request is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Database Request {{ id }}?"
+      },
+      "detail": {
+        "title": "Database Request"
+      },
+      "id": "ID",
+      "parameters": "Parameters",
+      "createdDate": "Created Date",
+      "expiresAt": "Expires At",
+      "downloadLink": "Download",
+      "databaseVersion": "Version",
+      "customUser": "Custom User"
+    }
+  }
+}

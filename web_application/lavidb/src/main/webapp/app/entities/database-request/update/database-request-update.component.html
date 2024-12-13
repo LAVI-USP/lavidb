@@ -1,0 +1,137 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-database-request-heading"
+        data-cy="DatabaseRequestCreateUpdateHeading"
+        jhiTranslate="lavidbApp.databaseRequest.home.createOrEditLabel"
+      >
+        Criar ou editar Database Request
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.databaseRequest.parameters" for="field_parameters">Parameters</label>
+          <input
+            type="text"
+            class="form-control"
+            name="parameters"
+            id="field_parameters"
+            data-cy="parameters"
+            formControlName="parameters"
+          />
+          <div *ngIf="editForm.get('parameters')!.invalid && (editForm.get('parameters')!.dirty || editForm.get('parameters')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('parameters')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              O campo é obrigatório.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.databaseRequest.createdDate" for="field_createdDate">Created Date</label>
+          <div class="d-flex">
+            <input
+              id="field_createdDate"
+              data-cy="createdDate"
+              type="datetime-local"
+              class="form-control"
+              name="createdDate"
+              formControlName="createdDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.databaseRequest.expiresAt" for="field_expiresAt">Expires At</label>
+          <div class="d-flex">
+            <input
+              id="field_expiresAt"
+              data-cy="expiresAt"
+              type="datetime-local"
+              class="form-control"
+              name="expiresAt"
+              formControlName="expiresAt"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.databaseRequest.downloadLink" for="field_downloadLink">Download Link</label>
+          <input
+            type="text"
+            class="form-control"
+            name="downloadLink"
+            id="field_downloadLink"
+            data-cy="downloadLink"
+            formControlName="downloadLink"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.databaseRequest.databaseVersion" for="field_databaseVersion"
+            >Database Version</label
+          >
+          <select
+            class="form-control"
+            id="field_databaseVersion"
+            data-cy="databaseVersion"
+            name="databaseVersion"
+            formControlName="databaseVersion"
+            [compareWith]="compareDatabaseVersion"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="databaseVersionOption" *ngFor="let databaseVersionOption of databaseVersionsSharedCollection">
+              {{ databaseVersionOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.databaseRequest.customUser" for="field_customUser">Custom User</label>
+          <select
+            class="form-control"
+            id="field_customUser"
+            data-cy="customUser"
+            name="customUser"
+            formControlName="customUser"
+            [compareWith]="compareCustomUser"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="customUserOption" *ngFor="let customUserOption of customUsersSharedCollection">
+              {{ customUserOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

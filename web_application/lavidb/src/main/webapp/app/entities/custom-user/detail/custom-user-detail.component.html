@@ -1,0 +1,36 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="customUser">
+      <h2 data-cy="customUserDetailsHeading"><span jhiTranslate="lavidbApp.customUser.detail.title">Custom User</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">Código</span></dt>
+        <dd>
+          <span>{{ customUser.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.customUser.licenseFile">licenseFile</span></dt>
+        <dd>
+          <span>{{ customUser.licenseFile }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.customUser.internalUser">Internal User</span></dt>
+        <dd>
+          <span>{{ customUser.internalUser?.id }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+      </button>
+
+      <button type="button" [routerLink]="['/custom-user', customUser.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

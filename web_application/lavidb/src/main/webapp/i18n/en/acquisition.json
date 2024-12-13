@@ -1,0 +1,67 @@
+{
+  "lavidbApp": {
+    "form": {
+      "title": "On-demand dataset",
+      "lesionDetails": "Lesion details",
+      "lesion": "Lesion",
+      "nrLesion": "Lesion",
+      "contrast": "Contrast",
+      "doseDetails": "Dose details",
+      "doseRed": "Reduced dose",
+      "doseMsg": "In addition to the standard dose, do you want to generate a dose reduction ?",
+      "contrastMsg": "How many contrasts do you want to generate in MC Cluster ?",
+      "nrContrast": "Number of contrasts",
+      "nrDose": "Number of doses",
+      "create": "Create",
+      "yes": "Yes",
+      "no": "No"
+    },
+    "card": {
+      "databaseVersion": "Image Database version",
+      "totalPatients": "Total Patients",
+      "totalImages": "Total Images",
+      "lastUpdate": "Last update"
+    },
+    "acquisition": {
+      "home": {
+        "title": "Acquisitions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create new version",
+        "createOrEditLabel": "Create or edit a Acquisition",
+        "notFound": "No Acquisitions found"
+      },
+      "created": "A new Acquisition is created with identifier {{ param }}",
+      "updated": "A Acquisition is updated with identifier {{ param }}",
+      "deleted": "A Acquisition is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Acquisition {{ id }}?"
+      },
+      "create": {
+        "question": "Are you sure you want to create a new image database version?",
+        "title": "Create new database version !"
+      },
+      "dbrequest": {
+        "question": "Are you sure you want to create a new image dataset ?",
+        "title": "Create new image dataset !",
+        "info": "This request will generate a total of <h1 class='nrImage'>{{ nrImages }}</h1> images."
+      },
+      "detail": {
+        "title": "Acquisition"
+      },
+      "id": "ID",
+      "accessionNumber": "Accession Number",
+      "acquisitionDate": "Acquisition Date",
+      "imageLaterality": "Image Laterality",
+      "viewPosition": "View Position",
+      "imagePath": "Image Path",
+      "imageRaw": "Image Raw",
+      "thumbPath": "Thumb Path",
+      "version": "Version",
+      "manufacturer": "Manufacturer",
+      "irradiationEvent": "Irradiation Event",
+      "patient": "Patient",
+      "diagnostic": "Diagnostic",
+      "institution": "Institution"
+    }
+  }
+}

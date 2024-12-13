@@ -1,0 +1,27 @@
+{
+  "lavidbApp": {
+    "manufacturer": {
+      "home": {
+        "title": "Manufacturers",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Manufacturer",
+        "createOrEditLabel": "Criar ou editar Manufacturer",
+        "notFound": "Nenhum Manufacturer encontrado"
+      },
+      "created": "Um novo Manufacturer foi criado com o identificador {{ param }}",
+      "updated": "Um Manufacturer foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Manufacturer foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Manufacturer {{ id }}?"
+      },
+      "detail": {
+        "title": "Manufacturer"
+      },
+      "id": "ID",
+      "name": "Name",
+      "model": "Model",
+      "modality": "Modality",
+      "hash": "Hash"
+    }
+  }
+}

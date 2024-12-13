@@ -1,0 +1,25 @@
+{
+  "applications": "*",
+  "changelogDate": "20230713225203",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "diagnostic",
+  "fields": [
+    {
+      "fieldName": "birads",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Diagnostic",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

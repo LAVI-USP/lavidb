@@ -1,0 +1,95 @@
+<div>
+  <h2 id="page-heading" data-cy="DiagnosticHeading">
+    <span jhiTranslate="lavidbApp.diagnostic.home.title">Diagnostics</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="lavidbApp.diagnostic.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-diagnostic"
+        [routerLink]="['/diagnostic/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="lavidbApp.diagnostic.home.createLabel"> Criar novo Diagnostic </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="diagnostics?.length === 0">
+    <span jhiTranslate="lavidbApp.diagnostic.home.notFound">Nenhum Diagnostic encontrado</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="diagnostics && diagnostics.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">Código</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="birads">
+            <div class="d-flex">
+              <span jhiTranslate="lavidbApp.diagnostic.birads">Birads</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span jhiTranslate="lavidbApp.diagnostic.description">Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let diagnostic of diagnostics; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/diagnostic', diagnostic.id, 'view']">{{ diagnostic.id }}</a>
+          </td>
+          <td>{{ diagnostic.birads }}</td>
+          <td>{{ diagnostic.description }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/diagnostic', diagnostic.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/diagnostic', diagnostic.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </button>
+
+              <button type="submit" (click)="delete(diagnostic)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+{
+  "lavidbApp": {
+    "diagnostic": {
+      "home": {
+        "title": "Diagnostics",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Diagnostic",
+        "createOrEditLabel": "Criar ou editar Diagnostic",
+        "notFound": "Nenhum Diagnostic encontrado"
+      },
+      "created": "Um novo Diagnostic foi criado com o identificador {{ param }}",
+      "updated": "Um Diagnostic foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Diagnostic foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Diagnostic {{ id }}?"
+      },
+      "detail": {
+        "title": "Diagnostic"
+      },
+      "id": "ID",
+      "birads": "Birads",
+      "description": "Description"
+    }
+  }
+}

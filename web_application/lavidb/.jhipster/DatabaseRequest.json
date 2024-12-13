@@ -1,0 +1,45 @@
+{
+  "applications": "*",
+  "changelogDate": "20230713225159",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "database_request",
+  "fields": [
+    {
+      "fieldName": "parameters",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "expiresAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "downloadLink",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "DatabaseRequest",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "databaseVersion",
+      "relationshipName": "databaseVersion",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "customUser",
+      "otherEntityRelationshipName": "databaseRequest",
+      "relationshipName": "customUser",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

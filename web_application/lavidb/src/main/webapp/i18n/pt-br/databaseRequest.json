@@ -1,0 +1,29 @@
+{
+  "lavidbApp": {
+    "databaseRequest": {
+      "home": {
+        "title": "Database Requests",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Database Request",
+        "createOrEditLabel": "Criar ou editar Database Request",
+        "notFound": "Nenhum Database Request encontrado"
+      },
+      "created": "Um novo Database Request foi criado com o identificador {{ param }}",
+      "updated": "Um Database Request foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Database Request foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Database Request {{ id }}?"
+      },
+      "detail": {
+        "title": "Database Request"
+      },
+      "id": "ID",
+      "parameters": "Parâmetros",
+      "createdDate": "Data de criação",
+      "expiresAt": "Expira em",
+      "downloadLink": "Download",
+      "databaseVersion": "Versão",
+      "customUser": "Custom User"
+    }
+  }
+}

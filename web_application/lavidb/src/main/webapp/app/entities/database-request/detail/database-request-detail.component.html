@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="databaseRequest">
+      <h2 data-cy="databaseRequestDetailsHeading"><span jhiTranslate="lavidbApp.databaseRequest.detail.title">Database Request</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">Código</span></dt>
+        <dd>
+          <span>{{ databaseRequest.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.databaseRequest.parameters">Parameters</span></dt>
+        <dd>
+          <span>{{ databaseRequest.parameters }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.databaseRequest.createdDate">Created Date</span></dt>
+        <dd>
+          <span>{{ databaseRequest.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.databaseRequest.expiresAt">Expires At</span></dt>
+        <dd>
+          <span>{{ databaseRequest.expiresAt | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.databaseRequest.downloadLink">Download Link</span></dt>
+        <dd>
+          <span>{{ databaseRequest.downloadLink }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.databaseRequest.databaseVersion">Database Version</span></dt>
+        <dd>
+          <div *ngIf="databaseRequest.databaseVersion">
+            <a [routerLink]="['/database-version', databaseRequest.databaseVersion.id, 'view']">{{ databaseRequest.databaseVersion.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.databaseRequest.customUser">Custom User</span></dt>
+        <dd>
+          <div *ngIf="databaseRequest.customUser">
+            <a [routerLink]="['/custom-user', databaseRequest.customUser.id, 'view']">{{ databaseRequest.customUser.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+      </button>
+
+      <button type="button" [routerLink]="['/database-request', databaseRequest.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

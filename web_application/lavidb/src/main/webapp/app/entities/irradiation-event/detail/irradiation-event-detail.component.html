@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="irradiationEvent">
+      <h2 data-cy="irradiationEventDetailsHeading">
+        <span jhiTranslate="lavidbApp.irradiationEvent.detail.title">Irradiation Event</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">Código</span></dt>
+        <dd>
+          <span>{{ irradiationEvent.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.irradiationEvent.relativeXrayExposure">Relative Xray Exposure</span></dt>
+        <dd>
+          <span>{{ irradiationEvent.relativeXrayExposure }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.irradiationEvent.kvp">Kvp</span></dt>
+        <dd>
+          <span>{{ irradiationEvent.kvp }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.irradiationEvent.dosemAs">Dosem As</span></dt>
+        <dd>
+          <span>{{ irradiationEvent.dosemAs }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.irradiationEvent.dosemGy">Dosem Gy</span></dt>
+        <dd>
+          <span>{{ irradiationEvent.dosemGy }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+      </button>
+
+      <button type="button" [routerLink]="['/irradiation-event', irradiationEvent.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

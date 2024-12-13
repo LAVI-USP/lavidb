@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+/* ==========================================================================
+Main page styles
+========================================================================== */
+body {
+  font-family: 'Open Sans';
+}
+
+.hipster {
+  display: inline-block;
+  width: 347px;
+  height: 497px;
+  background-size: contain;
+}
+
+/* wait autoprefixer update to allow simple generation of high pixel density media query */
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (-moz-min-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2/1),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+  .hipster {
+    background-size: contain;
+  }
+}
+
+.alert-home {
+  background-color: #5a5c69;
+}
+
+.div-eesc {
+  background-color: #fff;
+  text-align: center;
+}
+
+.img-eesc {
+  width: 30%;
+  background-color: #fff;
+}

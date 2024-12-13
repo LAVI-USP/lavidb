@@ -1,0 +1,12 @@
+imageio==2.31.2
+matplotlib==3.7.2
+numpy==1.25.2
+pandas==2.2.1
+Pillow==9.0.1
+Pillow==10.2.0
+psutil==5.9.0
+pydicom==2.4.4
+python-dotenv==1.0.1
+Requests==2.31.0
+schedule==1.2.0
+tqdm==4.66.1

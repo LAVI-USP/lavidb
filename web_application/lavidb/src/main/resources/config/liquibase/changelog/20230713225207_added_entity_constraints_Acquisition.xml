@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Acquisition.
+    -->
+    <changeSet id="20230713225207-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="manufacturer_id"
+                                 baseTableName="acquisition"
+                                 constraintName="fk_acquisition__manufacturer_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="manufacturer"/>
+
+        <addForeignKeyConstraint baseColumnNames="irradiation_event_id"
+                                 baseTableName="acquisition"
+                                 constraintName="fk_acquisition__irradiation_event_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="irradiation_event"/>
+
+        <addForeignKeyConstraint baseColumnNames="patient_id"
+                                 baseTableName="acquisition"
+                                 constraintName="fk_acquisition__patient_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="patient"/>
+
+        <addForeignKeyConstraint baseColumnNames="diagnostic_id"
+                                 baseTableName="acquisition"
+                                 constraintName="fk_acquisition__diagnostic_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="diagnostic"/>
+
+        <addForeignKeyConstraint baseColumnNames="institution_id"
+                                 baseTableName="acquisition"
+                                 constraintName="fk_acquisition__institution_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="institution"/>
+
+        <addForeignKeyConstraint baseColumnNames="database_version_id"
+                                 baseTableName="acquisition"
+                                 constraintName="fk_acquisition__database_version_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="database_version"/>
+    </changeSet>
+</databaseChangeLog>

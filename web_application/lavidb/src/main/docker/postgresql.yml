@@ -1,0 +1,16 @@
+# This configuration is intended for development purpose, it's **your** responsibility to harden it for production
+version: '3.8'
+services:
+  lavidb-postgresql:
+    image: postgres:14.5
+    # volumes:
+    #   - ~/volumes/jhipster/lavidb/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=lavidb
+      - POSTGRES_PASSWORD=l4v1db@2023
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    restart: Always
+    # If you want to expose these ports outside your dev PC,
+    # remove the "127.0.0.1:" prefix
+    ports:
+      - 127.0.0.1:5432:5432

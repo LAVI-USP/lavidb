@@ -1,0 +1,26 @@
+{
+  "lavidbApp": {
+    "institution": {
+      "home": {
+        "title": "Institutions",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Institution",
+        "createOrEditLabel": "Criar ou editar Institution",
+        "notFound": "Nenhum Institution encontrado"
+      },
+      "created": "Um novo Institution foi criado com o identificador {{ param }}",
+      "updated": "Um Institution foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Institution foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Institution {{ id }}?"
+      },
+      "detail": {
+        "title": "Institution"
+      },
+      "id": "ID",
+      "name": "Name",
+      "department": "Department",
+      "hash": "Hash"
+    }
+  }
+}

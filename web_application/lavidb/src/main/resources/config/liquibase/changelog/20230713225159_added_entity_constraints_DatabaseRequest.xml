@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity DatabaseRequest.
+    -->
+    <changeSet id="20230713225159-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="database_version_id"
+                                 baseTableName="database_request"
+                                 constraintName="fk_database_request__database_version_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="database_version"/>
+
+        <addForeignKeyConstraint baseColumnNames="custom_user_id"
+                                 baseTableName="database_request"
+                                 constraintName="fk_database_request__custom_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="custom_user"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="patient">
+      <h2 data-cy="patientDetailsHeading"><span jhiTranslate="lavidbApp.patient.detail.title">Patient</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">Código</span></dt>
+        <dd>
+          <span>{{ patient.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.patient.name">Name</span></dt>
+        <dd>
+          <span>{{ patient.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.patient.sex">Sex</span></dt>
+        <dd>
+          <span>{{ patient.sex }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.patient.birthDate">Birth Date</span></dt>
+        <dd>
+          <span>{{ patient.birthDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.patient.age">Age</span></dt>
+        <dd>
+          <span>{{ patient.age }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.patient.hash">Hash</span></dt>
+        <dd>
+          <span>{{ patient.hash }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+      </button>
+
+      <button type="button" [routerLink]="['/patient', patient.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

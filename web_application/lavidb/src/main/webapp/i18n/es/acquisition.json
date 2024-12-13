@@ -1,0 +1,67 @@
+{
+  "lavidbApp": {
+    "form": {
+      "title": "Banco de imágenes bajo demanda",
+      "lesionDetails": "Detalle de la lesión",
+      "lesion": "Lesión",
+      "nrLesion": "Lesión",
+      "contrast": "Contraste",
+      "doseDetails": "Detalle de dosis",
+      "doseRed": "Dosis reducida",
+      "doseMsg": "Además de la dosis estándar, ¿quieres generar una reducción de dosis?",
+      "nrDose": "Número de dosis",
+      "contrastMsg": "¿Cuántos contrastes quieres generar en el MC Cluster?\n\n",
+      "nrContrast": "Número de contrastes",
+      "create": "Crear",
+      "yes": "Sí",
+      "no": "No"
+    },
+    "card": {
+      "databaseVersion": "banco de imágenes Versión",
+      "totalPatients": "Pacientes totales",
+      "totalImages": "Imágenes totales",
+      "lastUpdate": "Última actualización\n"
+    },
+    "acquisition": {
+      "home": {
+        "title": "Acquisitions",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nueva Versión",
+        "createOrEditLabel": "Crear o editar Acquisition",
+        "notFound": "Ningún Acquisitions encontrado"
+      },
+      "created": "Un nuevo Acquisition ha sido creado con el identificador {{ param }}",
+      "updated": "Un Acquisition ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Acquisition ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Acquisition {{ id }}?"
+      },
+      "create": {
+        "question": "¿Seguro de que desea crear una nueva versión de lo banco de imagenes?",
+        "title": "Crear nueva versión!"
+      },
+      "dbrequest": {
+        "question": ",¿Está seguro de que desea crear un nuevo conjunto de imágenes?",
+        "title": "Crear nuevo conjunto de imágenes !",
+        "info": "Esta solicitud generará un total de <h1 class='nrImage'>{{ nrImages }}</h1> imágenes."
+      },
+      "detail": {
+        "title": "Acquisition"
+      },
+      "id": "ID",
+      "accessionNumber": "Accession Number",
+      "acquisitionDate": "Acquisition Date",
+      "imageLaterality": "Image Laterality",
+      "viewPosition": "View Position",
+      "imagePath": "Image Path",
+      "imageRaw": "Image Raw",
+      "thumbPath": "Thumb Path",
+      "version": "Version",
+      "manufacturer": "Manufacturer",
+      "irradiationEvent": "Irradiation Event",
+      "patient": "Patient",
+      "diagnostic": "Diagnostic",
+      "institution": "Institution"
+    }
+  }
+}

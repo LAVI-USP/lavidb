@@ -1,0 +1,299 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-acquisition-heading" data-cy="AcquisitionCreateUpdateHeading" jhiTranslate="lavidbApp.acquisition.home.createOrEditLabel">
+        Criar ou editar Acquisition
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.acquisition.accessionNumber" for="field_accessionNumber"
+            >Accession Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="accessionNumber"
+            id="field_accessionNumber"
+            data-cy="accessionNumber"
+            formControlName="accessionNumber"
+          />
+          <div
+            *ngIf="
+              editForm.get('accessionNumber')!.invalid &&
+              (editForm.get('accessionNumber')!.dirty || editForm.get('accessionNumber')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('accessionNumber')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              O campo é obrigatório.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.acquisition.acquisitionDate" for="field_acquisitionDate"
+            >Acquisition Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_acquisitionDate"
+              data-cy="acquisitionDate"
+              type="datetime-local"
+              class="form-control"
+              name="acquisitionDate"
+              formControlName="acquisitionDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div
+            *ngIf="
+              editForm.get('acquisitionDate')!.invalid &&
+              (editForm.get('acquisitionDate')!.dirty || editForm.get('acquisitionDate')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('acquisitionDate')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              O campo é obrigatório.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('acquisitionDate')?.errors?.datetimelocal"
+              jhiTranslate="entity.validation.datetimelocal"
+            >
+              Este campo é do tipo data/hora.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.acquisition.imageLaterality" for="field_imageLaterality"
+            >Image Laterality</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="imageLaterality"
+            id="field_imageLaterality"
+            data-cy="imageLaterality"
+            formControlName="imageLaterality"
+          />
+          <div
+            *ngIf="
+              editForm.get('imageLaterality')!.invalid &&
+              (editForm.get('imageLaterality')!.dirty || editForm.get('imageLaterality')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('imageLaterality')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              O campo é obrigatório.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.acquisition.viewPosition" for="field_viewPosition">View Position</label>
+          <input
+            type="text"
+            class="form-control"
+            name="viewPosition"
+            id="field_viewPosition"
+            data-cy="viewPosition"
+            formControlName="viewPosition"
+          />
+          <div
+            *ngIf="editForm.get('viewPosition')!.invalid && (editForm.get('viewPosition')!.dirty || editForm.get('viewPosition')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('viewPosition')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              O campo é obrigatório.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.acquisition.imagePath" for="field_imagePath">Image Path</label>
+          <input type="text" class="form-control" name="imagePath" id="field_imagePath" data-cy="imagePath" formControlName="imagePath" />
+          <div *ngIf="editForm.get('imagePath')!.invalid && (editForm.get('imagePath')!.dirty || editForm.get('imagePath')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('imagePath')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              O campo é obrigatório.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.acquisition.imageRaw" for="field_imageRaw">Image Raw</label>
+          <input type="text" class="form-control" name="imageRaw" id="field_imageRaw" data-cy="imageRaw" formControlName="imageRaw" />
+          <div *ngIf="editForm.get('imageRaw')!.invalid && (editForm.get('imageRaw')!.dirty || editForm.get('imageRaw')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('imageRaw')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              O campo é obrigatório.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.acquisition.thumbPath" for="field_thumbPath">Thumb Path</label>
+          <input type="text" class="form-control" name="thumbPath" id="field_thumbPath" data-cy="thumbPath" formControlName="thumbPath" />
+          <div *ngIf="editForm.get('thumbPath')!.invalid && (editForm.get('thumbPath')!.dirty || editForm.get('thumbPath')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('thumbPath')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              O campo é obrigatório.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.acquisition.version" for="field_version">Version</label>
+          <input type="number" class="form-control" name="version" id="field_version" data-cy="version" formControlName="version" />
+          <div *ngIf="editForm.get('version')!.invalid && (editForm.get('version')!.dirty || editForm.get('version')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('version')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              O campo é obrigatório.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('version')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Este campo é do tipo numérico.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.acquisition.manufacturer" for="field_manufacturer">Manufacturer</label>
+          <select
+            class="form-control"
+            id="field_manufacturer"
+            data-cy="manufacturer"
+            name="manufacturer"
+            formControlName="manufacturer"
+            [compareWith]="compareManufacturer"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="manufacturerOption" *ngFor="let manufacturerOption of manufacturersSharedCollection">
+              {{ manufacturerOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.acquisition.irradiationEvent" for="field_irradiationEvent"
+            >Irradiation Event</label
+          >
+          <select
+            class="form-control"
+            id="field_irradiationEvent"
+            data-cy="irradiationEvent"
+            name="irradiationEvent"
+            formControlName="irradiationEvent"
+            [compareWith]="compareIrradiationEvent"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="irradiationEventOption" *ngFor="let irradiationEventOption of irradiationEventsSharedCollection">
+              {{ irradiationEventOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.acquisition.patient" for="field_patient">Patient</label>
+          <select
+            class="form-control"
+            id="field_patient"
+            data-cy="patient"
+            name="patient"
+            formControlName="patient"
+            [compareWith]="comparePatient"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="patientOption" *ngFor="let patientOption of patientsSharedCollection">{{ patientOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.acquisition.diagnostic" for="field_diagnostic">Diagnostic</label>
+          <select
+            class="form-control"
+            id="field_diagnostic"
+            data-cy="diagnostic"
+            name="diagnostic"
+            formControlName="diagnostic"
+            [compareWith]="compareDiagnostic"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="diagnosticOption" *ngFor="let diagnosticOption of diagnosticsSharedCollection">
+              {{ diagnosticOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.acquisition.institution" for="field_institution">Institution</label>
+          <select
+            class="form-control"
+            id="field_institution"
+            data-cy="institution"
+            name="institution"
+            formControlName="institution"
+            [compareWith]="compareInstitution"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="institutionOption" *ngFor="let institutionOption of institutionsSharedCollection">
+              {{ institutionOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

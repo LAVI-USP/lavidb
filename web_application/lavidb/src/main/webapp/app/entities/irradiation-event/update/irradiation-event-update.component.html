@@ -1,0 +1,125 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-irradiation-event-heading"
+        data-cy="IrradiationEventCreateUpdateHeading"
+        jhiTranslate="lavidbApp.irradiationEvent.home.createOrEditLabel"
+      >
+        Criar ou editar Irradiation Event
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.irradiationEvent.relativeXrayExposure" for="field_relativeXrayExposure"
+            >Relative Xray Exposure</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="relativeXrayExposure"
+            id="field_relativeXrayExposure"
+            data-cy="relativeXrayExposure"
+            formControlName="relativeXrayExposure"
+          />
+          <div
+            *ngIf="
+              editForm.get('relativeXrayExposure')!.invalid &&
+              (editForm.get('relativeXrayExposure')!.dirty || editForm.get('relativeXrayExposure')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('relativeXrayExposure')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              O campo é obrigatório.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('relativeXrayExposure')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Este campo é do tipo numérico.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.irradiationEvent.kvp" for="field_kvp">Kvp</label>
+          <input type="text" class="form-control" name="kvp" id="field_kvp" data-cy="kvp" formControlName="kvp" />
+          <div *ngIf="editForm.get('kvp')!.invalid && (editForm.get('kvp')!.dirty || editForm.get('kvp')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('kvp')?.errors?.required" jhiTranslate="entity.validation.required">
+              O campo é obrigatório.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.irradiationEvent.dosemAs" for="field_dosemAs">Dosem As</label>
+          <input type="number" class="form-control" name="dosemAs" id="field_dosemAs" data-cy="dosemAs" formControlName="dosemAs" />
+          <div *ngIf="editForm.get('dosemAs')!.invalid && (editForm.get('dosemAs')!.dirty || editForm.get('dosemAs')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dosemAs')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              O campo é obrigatório.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('dosemAs')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Este campo é do tipo numérico.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lavidbApp.irradiationEvent.dosemGy" for="field_dosemGy">Dosem Gy</label>
+          <input type="number" class="form-control" name="dosemGy" id="field_dosemGy" data-cy="dosemGy" formControlName="dosemGy" />
+          <div *ngIf="editForm.get('dosemGy')!.invalid && (editForm.get('dosemGy')!.dirty || editForm.get('dosemGy')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dosemGy')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              O campo é obrigatório.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('dosemGy')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Este campo é do tipo numérico.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

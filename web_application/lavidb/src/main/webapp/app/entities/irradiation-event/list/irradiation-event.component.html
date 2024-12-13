@@ -1,0 +1,109 @@
+<div>
+  <h2 id="page-heading" data-cy="IrradiationEventHeading">
+    <span jhiTranslate="lavidbApp.irradiationEvent.home.title">Irradiation Events</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="lavidbApp.irradiationEvent.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-irradiation-event"
+        [routerLink]="['/irradiation-event/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="lavidbApp.irradiationEvent.home.createLabel"> Criar novo Irradiation Event </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="irradiationEvents?.length === 0">
+    <span jhiTranslate="lavidbApp.irradiationEvent.home.notFound">Nenhum Irradiation Event encontrado</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="irradiationEvents && irradiationEvents.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">Código</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="relativeXrayExposure">
+            <div class="d-flex">
+              <span jhiTranslate="lavidbApp.irradiationEvent.relativeXrayExposure">Relative Xray Exposure</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="kvp">
+            <div class="d-flex">
+              <span jhiTranslate="lavidbApp.irradiationEvent.kvp">Kvp</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dosemAs">
+            <div class="d-flex">
+              <span jhiTranslate="lavidbApp.irradiationEvent.dosemAs">Dosem As</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dosemGy">
+            <div class="d-flex">
+              <span jhiTranslate="lavidbApp.irradiationEvent.dosemGy">Dosem Gy</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let irradiationEvent of irradiationEvents; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/irradiation-event', irradiationEvent.id, 'view']">{{ irradiationEvent.id }}</a>
+          </td>
+          <td>{{ irradiationEvent.relativeXrayExposure }}</td>
+          <td>{{ irradiationEvent.kvp }}</td>
+          <td>{{ irradiationEvent.dosemAs }}</td>
+          <td>{{ irradiationEvent.dosemGy }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/irradiation-event', irradiationEvent.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/irradiation-event', irradiationEvent.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </button>
+
+              <button type="submit" (click)="delete(irradiationEvent)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

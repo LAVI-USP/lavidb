@@ -1,0 +1,26 @@
+{
+  "lavidbApp": {
+    "customUser": {
+      "home": {
+        "title": "Custom Users",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Custom User",
+        "createOrEditLabel": "Criar ou editar Custom User",
+        "notFound": "Nenhum Custom User encontrado"
+      },
+      "created": "Um novo Custom User foi criado com o identificador {{ param }}",
+      "updated": "Um Custom User foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Custom User foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Custom User {{ id }}?"
+      },
+      "detail": {
+        "title": "Custom User"
+      },
+      "id": "ID",
+      "licenseFile": "licenseFile",
+      "internalUser": "Internal User",
+      "databaseRequest": "Database Request"
+    }
+  }
+}

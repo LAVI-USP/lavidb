@@ -1,0 +1,82 @@
+{
+  "applications": "*",
+  "changelogDate": "20230713225207",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "acquisition",
+  "fields": [
+    {
+      "fieldName": "accessionNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "acquisitionDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "imageLaterality",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "viewPosition",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "imagePath",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "imageRaw",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "thumbPath",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Acquisition",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "manufacturer",
+      "relationshipName": "manufacturer",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "irradiationEvent",
+      "relationshipName": "irradiationEvent",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "patient",
+      "relationshipName": "patient",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "diagnostic",
+      "relationshipName": "diagnostic",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "institution",
+      "relationshipName": "institution",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "databaseVersion",
+      "relationshipName": "databaseVersion",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

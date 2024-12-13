@@ -1,0 +1,112 @@
+entity DatabaseVersion {
+    versionNumber Integer required,
+    createdDate Instant
+}
+
+entity DatabaseRequest {
+    parameters String required,
+    createdDate Instant,
+    expiresAt Instant,
+    downloadLink String
+}
+
+entity CustomUser {
+    licensePath String required
+}
+
+entity Institution {
+	name String required,
+    department String,
+    hash String unique required
+}
+
+entity Diagnostic {
+	birads String required,
+	description String
+}
+
+entity Patient {
+	name String required,
+	sex String,
+	birthDate String required,
+    age Integer,
+    hash String unique required
+}
+
+entity Manufacturer {
+	name String required,
+	model String required,
+	modality String,
+    hash String unique required
+}
+
+entity IrradiationEvent {
+	relativeXrayExposure Integer required,
+    kvp String required,
+    dosemAs Float required,
+    dosemGy Float required
+}
+
+entity Acquisition {
+	accessionNumber String required,
+	acquisitionDate Instant required,
+	imageLaterality String required,
+    viewPosition String required,
+    imagePath String required,
+    imageRaw String required,
+    thumbPath String required
+}
+
+relationship ManyToOne {
+	Acquisition{manufacturer} to Manufacturer
+}
+
+relationship ManyToOne {
+	Acquisition{irradiationEvent} to IrradiationEvent
+}
+
+relationship ManyToOne {
+	Acquisition{patient} to Patient
+}
+
+relationship ManyToOne {
+	Acquisition{diagnostic} to Diagnostic
+}
+
+relationship ManyToOne {
+	Acquisition{institution} to Institution
+}
+
+relationship ManyToOne {
+    Acquisition{databaseVersion} to DatabaseVersion
+}
+
+relationship ManyToOne {
+    Patient{databaseVersion} to DatabaseVersion
+}
+
+relationship ManyToOne {
+    DatabaseRequest{databaseVersion} to DatabaseVersion
+}
+
+relationship  OneToOne {
+    CustomUser{internalUser} to User
+}
+
+relationship  OneToMany {
+    CustomUser{databaseRequest} to DatabaseRequest
+}
+
+// Set pagination options
+paginate Acquisition with infinite-scroll
+//paginate Job with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+//service all with serviceImpl except Employee, Job
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
+

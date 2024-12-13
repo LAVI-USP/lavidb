@@ -1,0 +1,90 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="acquisition">
+      <h2 data-cy="acquisitionDetailsHeading"><span jhiTranslate="lavidbApp.acquisition.detail.title">Acquisition</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">Código</span></dt>
+        <dd>
+          <span>{{ acquisition.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.acquisition.accessionNumber">Accession Number</span></dt>
+        <dd>
+          <span>{{ acquisition.accessionNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.acquisition.acquisitionDate">Acquisition Date</span></dt>
+        <dd>
+          <span>{{ acquisition.acquisitionDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.acquisition.imageLaterality">Image Laterality</span></dt>
+        <dd>
+          <span>{{ acquisition.imageLaterality }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.acquisition.viewPosition">View Position</span></dt>
+        <dd>
+          <span>{{ acquisition.viewPosition }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.acquisition.imagePath">Image Path</span></dt>
+        <dd>
+          <span>{{ acquisition.imagePath }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.acquisition.imageRaw">Image Raw</span></dt>
+        <dd>
+          <span>{{ acquisition.imageRaw }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.acquisition.thumbPath">Thumb Path</span></dt>
+        <dd>
+          <span>{{ acquisition.thumbPath }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.acquisition.version">Version</span></dt>
+        <dd>
+          <span>{{ acquisition.version }}</span>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.acquisition.manufacturer">Manufacturer</span></dt>
+        <dd>
+          <div *ngIf="acquisition.manufacturer">
+            <a [routerLink]="['/manufacturer', acquisition.manufacturer.id, 'view']">{{ acquisition.manufacturer.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.acquisition.irradiationEvent">Irradiation Event</span></dt>
+        <dd>
+          <div *ngIf="acquisition.irradiationEvent">
+            <a [routerLink]="['/irradiation-event', acquisition.irradiationEvent.id, 'view']">{{ acquisition.irradiationEvent.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.acquisition.patient">Patient</span></dt>
+        <dd>
+          <div *ngIf="acquisition.patient">
+            <a [routerLink]="['/patient', acquisition.patient.id, 'view']">{{ acquisition.patient.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.acquisition.diagnostic">Diagnostic</span></dt>
+        <dd>
+          <div *ngIf="acquisition.diagnostic">
+            <a [routerLink]="['/diagnostic', acquisition.diagnostic.id, 'view']">{{ acquisition.diagnostic.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="lavidbApp.acquisition.institution">Institution</span></dt>
+        <dd>
+          <div *ngIf="acquisition.institution">
+            <a [routerLink]="['/institution', acquisition.institution.id, 'view']">{{ acquisition.institution.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+      </button>
+
+      <button type="button" [routerLink]="['/acquisition', acquisition.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

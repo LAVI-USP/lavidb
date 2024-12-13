@@ -1,0 +1,25 @@
+{
+  "applications": "*",
+  "changelogDate": "20230725181808",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "database_version",
+  "fields": [
+    {
+      "fieldName": "versionNumber",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "DatabaseVersion",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

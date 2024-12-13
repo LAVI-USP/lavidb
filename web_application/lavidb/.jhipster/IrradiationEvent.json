@@ -1,0 +1,36 @@
+{
+  "applications": "*",
+  "changelogDate": "20230713225206",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "irradiation_event",
+  "fields": [
+    {
+      "fieldName": "relativeXrayExposure",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "kvp",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dosemAs",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dosemGy",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "IrradiationEvent",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

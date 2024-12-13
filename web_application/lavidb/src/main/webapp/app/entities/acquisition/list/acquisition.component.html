@@ -1,0 +1,635 @@
+<div xmlns="http://www.w3.org/1999/html">
+  <h2 id="page-heading" data-cy="AcquisitionHeading">
+    <div class="d-flex justify-content-end div-create-version">
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-acquisition"
+        type="submit"
+        (click)="createNewVersion()"
+        *jhiHasAnyAuthority="'ROLE_ADMIN'"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="lavidbApp.acquisition.home.createLabel"> Criar novo Acquisition </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="acquisitions?.length === 0">
+    <span jhiTranslate="lavidbApp.acquisition.home.notFound">Nenhum Acquisition encontrado</span>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div jhiTranslate="lavidbApp.card.databaseVersion" class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                  Image database version
+                </div>
+                <div class="h2 mb-0 font-weight-bold text-title">
+                  <select
+                    id="field_versions"
+                    data-cy="versions"
+                    name="versions"
+                    (change)="changeVersion($event)"
+                    ng-model="versionSelected"
+                    class="selectVersion"
+                  >
+                    <option value="{{ version.versionNumber }}" *ngFor="let version of versions">v{{ version.versionNumber }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-auto">
+                <!--                <i class="fas fa-clipboard fa-2x text-title"></i>-->
+                <fa-icon icon="database" class="text-title dash-icon-size"></fa-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div jhiTranslate="lavidbApp.card.totalPatients" class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                  Total Patients
+                </div>
+                <div class="h2 mb-0 font-weight-bold text-title">{{ totalPatients }}</div>
+              </div>
+              <div class="col-auto">
+                <!--                <i class="fas fa-user fa-2x text-title"></i>-->
+                <fa-icon icon="hospital-user" class="text-title dash-icon-size"></fa-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div jhiTranslate="lavidbApp.card.totalImages" class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                  Total Images
+                </div>
+                <div class="h2 mb-0 font-weight-bold text-title">{{ totalAcquisitions }}</div>
+              </div>
+              <div class="col-auto">
+                <!--                    <i class="fa-solid fa-user"></i>-->
+                <fa-icon icon="file-medical" class="text-title dash-icon-size"></fa-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div jhiTranslate="lavidbApp.card.lastUpdate" class="dash-title text-xs font-weight-bold text-primary text-uppercase mb-1">
+                  Last Update
+                </div>
+                <div class="h5 mb-0 font-weight-bold text-title">{{ lastUpdate }}</div>
+              </div>
+              <div class="col-auto">
+                <!--                <i class="fas fa-clock fa-2x text-title"></i>-->
+                <fa-icon icon="sync" class="text-title dash-icon-size"></fa-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 grid-margin">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title text-title">
+              <b>
+                <span jhiTranslate="lavidbApp.form.title"> On-demand Dataset </span>
+              </b>
+            </h4>
+            <br />
+            <form class="form-sample">
+              <p class="card-description">
+                <b>
+                  <span jhiTranslate="lavidbApp.form.lesionDetails"> Lesion Details </span>
+                </b>
+              </p>
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label"> <span jhiTranslate="lavidbApp.form.lesion"> Lesion ? </span> ? </label>
+                    <div class="col-sm-4">
+                      <div class="form-check">
+                        <label class="col-form-label">
+                          <input
+                            type="radio"
+                            (change)="checkLesion($event)"
+                            ng-model="hasLesion"
+                            class="form-check-input"
+                            name="hasLesion"
+                            checked
+                            value="0"
+                          />
+                          <span jhiTranslate="lavidbApp.form.no"> no </span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-sm-5">
+                      <div class="form-check">
+                        <label class="col-form-label">
+                          <input
+                            type="radio"
+                            (change)="checkLesion($event)"
+                            ng-model="hasLesion"
+                            class="form-check-input"
+                            name="hasLesion"
+                            value="1"
+                          />
+                          <span jhiTranslate="lavidbApp.form.yes"> yes </span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="hasLesion == 1">
+                <div class="row">
+                  <div class="col-md-8">
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">
+                        <span jhiTranslate="lavidbApp.form.nrLesion"> Nr Lesions </span> (Min/Max)
+                      </label>
+                      <div class="col-sm-9 custom-slider">
+                        <ngx-slider [(value)]="minLesionValue" [(highValue)]="maxLesionValue" [options]="lesionsOptions"></ngx-slider>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col-md-6">
+                    <label class="col-sm-3 col-form-label">
+                      <span jhiTranslate="lavidbApp.form.contrastMsg"> Contrast Msg </span>
+                    </label>
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">
+                        <span jhiTranslate="lavidbApp.form.nrContrast"> Numero de contrastes </span>
+                      </label>
+                      <div class="col-sm-2">
+                        <div class="form-check">
+                          <label class="col-form-label">
+                            <input
+                              type="radio"
+                              (change)="checkNrContrast($event)"
+                              ng-model="nrContrast"
+                              class="form-check-input"
+                              name="nrContrast"
+                              checked
+                              value="1"
+                            />
+                            1
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-sm-2">
+                        <div class="form-check">
+                          <label class="col-form-label">
+                            <input
+                              type="radio"
+                              (change)="checkNrContrast($event)"
+                              ng-model="nrContrast"
+                              class="form-check-input"
+                              name="nrContrast"
+                              value="2"
+                            />
+                            2
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-sm-2">
+                        <div class="form-check">
+                          <label class="col-form-label">
+                            <input
+                              type="radio"
+                              (change)="checkNrContrast($event)"
+                              ng-model="nrContrast"
+                              class="form-check-input"
+                              name="nrContrast"
+                              value="3"
+                            />
+                            3
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <div *ngIf="nrContrast == 1">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">
+                          <b>1</b>
+                          <span jhiTranslate="lavidbApp.form.contrast"> Contrast </span> (%)
+                        </label>
+                        <div class="col-sm-9 custom-slider">
+                          <ngx-slider [(value)]="contrast1Value" [options]="contrastOptions"></ngx-slider>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <div *ngIf="nrContrast == 2">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">
+                          <b>1</b>
+                          <span jhiTranslate="lavidbApp.form.contrast"> Contrast </span> (%)
+                        </label>
+                        <div class="col-sm-9 custom-slider">
+                          <ngx-slider [(value)]="contrast1Value" [options]="contrastOptions"></ngx-slider>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">
+                          <b>2</b>
+                          <span jhiTranslate="lavidbApp.form.contrast"> Contrast </span> (%)
+                        </label>
+                        <div class="col-sm-9 custom-slider">
+                          <ngx-slider [(value)]="contrast2Value" [options]="contrastOptions"></ngx-slider>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <div *ngIf="nrContrast == 3">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">
+                          <b>1</b>
+                          <span jhiTranslate="lavidbApp.form.contrast"> Contrast </span> (%)
+                        </label>
+                        <div class="col-sm-9 custom-slider">
+                          <ngx-slider [(value)]="contrast1Value" [options]="contrastOptions"></ngx-slider>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">
+                          <b>2</b>
+                          <span jhiTranslate="lavidbApp.form.contrast"> Contrast </span> (%)
+                        </label>
+                        <div class="col-sm-9 custom-slider">
+                          <ngx-slider [(value)]="contrast2Value" [options]="contrastOptions"></ngx-slider>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">
+                          <b>3</b>
+                          <span jhiTranslate="lavidbApp.form.contrast"> Contrast </span> (%)
+                        </label>
+                        <div class="col-sm-9 custom-slider">
+                          <ngx-slider [(value)]="contrast3Value" [options]="contrastOptions"></ngx-slider>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--                <div class="row">-->
+                <!--                  <div class="col-md-8">-->
+                <!--                    <div class="form-group row">-->
+                <!--                      <label class="col-sm-3 col-form-label"> <span jhiTranslate="lavidbApp.form.contrast"> Contrast </span> (%) </label>-->
+                <!--                      <div class="col-sm-9 custom-slider">-->
+                <!--                        <ngx-slider [(value)]="contrast1Value"  [options]="contrastOptions"></ngx-slider>-->
+                <!--                      </div>-->
+                <!--                    </div>-->
+                <!--                  </div>-->
+                <!--                </div>-->
+              </div>
+              <br />
+              <p class="card-description">
+                <b>
+                  <span jhiTranslate="lavidbApp.form.doseDetails"> Dose Details </span>
+                </b>
+              </p>
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">
+                      <span jhiTranslate="lavidbApp.form.doseMsg"> Dose Msg </span>
+                    </label>
+                    <div class="col-sm-4">
+                      <div class="form-check">
+                        <label class="col-form-label">
+                          <input
+                            type="radio"
+                            (change)="checkDose($event)"
+                            ng-model="hasDose"
+                            class="form-check-input"
+                            name="hasDose"
+                            checked
+                            value="0"
+                          />
+                          <span jhiTranslate="lavidbApp.form.no"> no </span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-sm-5">
+                      <div class="form-check">
+                        <label class="col-form-label">
+                          <input
+                            type="radio"
+                            (change)="checkDose($event)"
+                            ng-model="hasDose"
+                            class="form-check-input"
+                            name="hasDose"
+                            value="1"
+                          />
+                          <span jhiTranslate="lavidbApp.form.yes"> yes </span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="hasDose == 1">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">
+                        <span jhiTranslate="lavidbApp.form.nrDose"> Numero de doeses </span>
+                      </label>
+                      <div class="col-sm-2">
+                        <div class="form-check">
+                          <label class="col-form-label">
+                            <input
+                              type="radio"
+                              (change)="checkNrDose($event)"
+                              ng-model="nrDose"
+                              class="form-check-input"
+                              name="nrDose"
+                              checked
+                              value="1"
+                            />
+                            1
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-sm-2">
+                        <div class="form-check">
+                          <label class="col-form-label">
+                            <input
+                              type="radio"
+                              (change)="checkNrDose($event)"
+                              ng-model="nrDose"
+                              class="form-check-input"
+                              name="nrDose"
+                              value="2"
+                            />
+                            2
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-sm-2">
+                        <div class="form-check">
+                          <label class="col-form-label">
+                            <input
+                              type="radio"
+                              (change)="checkNrDose($event)"
+                              ng-model="nrDose"
+                              class="form-check-input"
+                              name="nrDose"
+                              value="3"
+                            />
+                            3
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <div *ngIf="nrDose == 1">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">
+                          <b>1</b>
+                          <span jhiTranslate="lavidbApp.form.doseRed"> Dose reduzida (%) </span> (%)
+                        </label>
+                        <div class="col-sm-9 custom-slider">
+                          <ngx-slider [(value)]="doseReduced1Value" [options]="doseOptions"></ngx-slider>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="nrDose == 2">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">
+                          <b>1</b>
+                          <span jhiTranslate="lavidbApp.form.doseRed"> Dose reduzida (%) </span> (%)
+                        </label>
+                        <div class="col-sm-9 custom-slider">
+                          <ngx-slider [(value)]="doseReduced1Value" [options]="doseOptions"></ngx-slider>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">
+                          <b>2</b>
+                          <span jhiTranslate="lavidbApp.form.doseRed"> Dose reduzida (%) </span> (%)
+                        </label>
+                        <div class="col-sm-9 custom-slider">
+                          <ngx-slider [(value)]="doseReduced2Value" [options]="doseOptions"></ngx-slider>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="nrDose == 3">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">
+                          <b>1</b>
+                          <span jhiTranslate="lavidbApp.form.doseRed"> Dose reduzida (%) </span> (%)
+                        </label>
+                        <div class="col-sm-9 custom-slider">
+                          <ngx-slider [(value)]="doseReduced1Value" [options]="doseOptions"></ngx-slider>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">
+                          <b>2</b>
+                          <span jhiTranslate="lavidbApp.form.doseRed"> Dose reduzida (%) </span> (%)
+                        </label>
+                        <div class="col-sm-9 custom-slider">
+                          <ngx-slider [(value)]="doseReduced2Value" [options]="doseOptions"></ngx-slider>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">
+                          <b>3</b>
+                          <span jhiTranslate="lavidbApp.form.doseRed"> Dose reduzida (%) </span> (%)
+                        </label>
+                        <div class="col-sm-9 custom-slider">
+                          <ngx-slider [(value)]="doseReduced3Value" [options]="doseOptions"></ngx-slider>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="form-group row">
+                    <div class="col-sm-12">
+                      <div class="form-btn-create">
+                        <button type="button" (click)="requestDB()" class="btn btn-primary">
+                          <span jhiTranslate="lavidbApp.form.create"> Create Dataset </span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br />
+    <br />
+    <!--    <div class="row">-->
+    <!--      <div class="col-sm-12">-->
+    <!--        <input type="checkbox" checked  onchange="changeResult(this)"  id="toogle-result" data-toggle="toggle" data-on="Cards" data-off="Table" data-onstyle="primary" data-offstyle="secondary">-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <br />
+    <br />
+
+    <div class="row" infinite-scroll (scrolled)="loadPage(page + 1)" *ngIf="acquisitions && acquisitions.length > 0">
+      <!-- Page Heading -->
+      <div class="d-sm-flex align-items-center justify-content-between mb-4" style="margin-left: 15px">
+        <h1 class="h3 mb-0"><b>Available Clinical Images</b></h1>
+      </div>
+      <!-- Content Row -->
+
+      <div class="row" id="res-card" style="margin-left: 2px; width: 99.5%">
+        <div *ngFor="let acquisition of acquisitions; let i = index" class="col-md-3">
+          <div class="card card-custom" style="margin-top: 10px">
+            <div class="card-img">
+              <img src="{{ acquisition.thumbPath }}" class="card-img-top" alt="..." />
+              <div class="card-head">
+                <div class="card-badges" *ngIf="acquisition.institution">
+                  <label class="badge badge-mammo-type">FFDM</label>
+                  <label class="badge badge-birads">#{{ acquisition.accessionNumber }}</label>
+                </div>
+                <div class="card-hosp" *ngIf="acquisition.institution">
+                  <span>{{ acquisition.institution.name }}</span>
+                  <!--                  <br />-->
+                  <!--                  <span>{{ acquisition.institution.department }}</span>-->
+                </div>
+                <!--                <div class="div-badge-date">-->
+                <!--                  <label>{{ dateFormat(acquisition.acquisitionDate) }}</label>-->
+                <!--                </div>-->
+              </div>
+            </div>
+
+            <div *ngIf="acquisition.institution" class="card-body card-body-custom">
+              <div class="card-row-1">
+                <div *ngIf="acquisition.patient" class="card-user">
+                  <fa-icon icon="hospital-user" class="text-title"></fa-icon> <span class="card-icon-title">Patient</span>
+                  <div class="card-info">
+                    <!--                    <span>ID : {{ acquisition.patient.id }}</span>-->
+                    <!--                    <br />-->
+                    <span>Name : {{ acquisition.patient.name }} </span>
+                    <br />
+                    <span>Age : {{ acquisition.patient.age }}</span>
+                  </div>
+                </div>
+                <div class="card-patient">
+                  <fa-icon icon="file-medical" class="text-title"></fa-icon> <span class="card-icon-title">Image Info</span>
+                  <div class="card-info">
+                    <span>Laterality : {{ acquisition.imageLaterality }}</span>
+                    <br />
+                    <span>Position : {{ acquisition.viewPosition }}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="card-row-1">
+                <div *ngIf="acquisition.manufacturer" class="card-user">
+                  <fa-icon icon="x-ray" class="text-title"></fa-icon> <span class="card-icon-title">Manufacturer</span>
+                  <div class="card-info">
+                    <span>Name : {{ acquisition.manufacturer.name }}</span>
+                    <br />
+                    <span>Model : {{ acquisition.manufacturer.model }}</span>
+                    <!--                    <br />-->
+                    <!--                    <span>Modality : {{ acquisition.manufacturer.modality }}</span>-->
+                  </div>
+                </div>
+                <div *ngIf="acquisition.irradiationEvent" class="card-patient">
+                  <fa-icon icon="radiation" class="text-title"></fa-icon> <span class="card-icon-title">Radiation</span>
+                  <div class="card-info">
+                    <span>kVp : {{ acquisition.irradiationEvent.kvp }}</span>
+                    <br />
+                    <span>Dose(mAs) : {{ acquisition.irradiationEvent.dosemAs }}</span>
+                    <br />
+                    <span>Dose(mGy) : {{ acquisition.irradiationEvent.dosemGy }} </span>
+                  </div>
+                </div>
+              </div>
+              <!--              <div class="card-row-1">-->
+              <!--                <div class="card-check">-->
+              <!--                  <input type="checkbox" class="form-check-input" />-->
+              <!--                </div>-->
+              <!--              </div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
